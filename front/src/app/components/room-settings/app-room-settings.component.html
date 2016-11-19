@@ -1,0 +1,48 @@
+<div class="row" *ngIf="room">
+    <div class="col s12 m12">
+        <div class="card-panel">
+            <div class="card-content">
+                <span class="card-title">ルーム設定</span>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <form (submit)="updateRoomTitle()">
+                            <input id="room_title" name="room_title" type="text"
+                                   placeholder="カードゲームしよう！"
+                                   autofocus
+                                   [(ngModel)]="room.title"
+                                   class="validate" required>
+                        </form>
+
+                        <div class="row">
+                            <div class="file-field input-field">
+                                <div class="btn" [class.disabled]="uploader.queue.length != 0">
+                                    <span>写真</span>
+                                    <input type="file" ng2FileSelect
+                                           [uploader]="uploader" accept="image/*" [disabled]="uploader.queue.length != 0">
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path" type="text" [disabled]="uploader.queue.length != 0">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <a materialize="modal"
+                               class="waves-effect waves-light btn modal-trigger red right" (click)="openModal()">削除</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" materialize="modal" [materializeActions]="modalActions">
+    <div class="modal-content">
+        <h4>確認</h4>
+        <p>ルームを削除しますか？</p>
+    </div>
+    <div class="modal-footer">
+        <a class=" modal-action modal-close btn-flat red white-text" (click)="deleteRoom()">削除</a>
+        <a class=" modal-action modal-close btn-flat" (click)="closeModal()">キャンセル</a>
+    </div>
+</div>

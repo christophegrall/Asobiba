@@ -1,0 +1,18 @@
+<style>
+    .cover {
+        min-width: 100%;
+        min-height: 100%;
+        object-fit: cover;
+    }
+</style>
+<div class="col s6 m3" *ngIf="roomInfo">
+    <div class="card animated fadeIn" (click)="onClick()">
+        <div class="card-image" style=" height: 200px; overflow: hidden">
+            <img [src]="'/room/' + roomInfo.roomId + '/image' + timestamp" class="cover">
+        </div>
+        <div class="card-content">
+            <p class="truncate">{{roomInfo.title}}</p>
+            <p>{{roomInfo.roomName}}aaaaaaaa</p>
+        </div>
+    </div>
+</div>

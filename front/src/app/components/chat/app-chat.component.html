@@ -1,0 +1,25 @@
+<div class="row" *ngIf="room">
+    <div class="col s12 m12">
+        <div class="card-panel">
+            <div class="card-content">
+                <span class="card-title">ルーム設定</span>
+                <div class="row" *ngFor="let item of messages">
+                    {{item.comment}}
+                </div>
+
+                <div class="row">
+                    <form (submit)="send()">
+                    <div class="input-field col s9">
+                        <input placeholder="Messages..." id="message" name="message"
+                               [(ngModel)]="message"
+                               type="text" class="validate">
+                    </div>
+                    <div class="input-field col s3">
+                        <button class="waves-effect waves-light btn" type="submit">送信</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

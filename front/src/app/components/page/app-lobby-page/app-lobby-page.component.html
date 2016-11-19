@@ -1,0 +1,37 @@
+<div class="row" *ngIf="rooms">
+    <app-room-card *ngFor="let item of rooms" [roomInfo]="item"></app-room-card>
+</div>
+
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large red">
+        <i class="large material-icons modal-trigger" (click)="openModal()">add</i>
+    </a>
+</div>
+
+<div *ngIf="rooms" class="modal" materialize="modal" [materializeActions]="modalActions">
+    <form action="col s12" (submit)="onSubmit()">
+        <div class="modal-content">
+            <h4>ルーム作成</h4>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="title" type="text" name="title" class="validate" required autofocus [(ngModel)]="title">
+                    <label for="title">タイトル</label>
+                </div>
+                <div class="input-field col s12">
+                    <select required materialize="material_select"
+                            name="roomName"
+                            [materializeSelectOptions]="selectOptions"
+                            [(ngModel)]="roomName">
+                        <option value="" disabled selected>教室を選んでください</option>
+                        <option *ngFor="let item of selectFreeRooms(rooms)" [value]="item">{{item}}</option>
+                    </select>
+                    <label>教室</label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="waves-effect modal-close waves-green btn-flat" type="reset" (click)="closeModal()">キャンセル</button>
+            <button class="modal-action waves-effect waves-green btn-flat" type="submit">作成</button>
+        </div>
+    </form>
+</div>
